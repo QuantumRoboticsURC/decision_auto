@@ -1,0 +1,10 @@
+<launch>
+    <env name="ROSCONSOLE_FORMAT" value="[${severity}][${thread}][${node}/${function}:${line}]: ${message}"/>
+
+    <node pkg="decision_auto" type="decision_auto" name="decision_auto" clear_params="true" output="screen" respawn="true" >
+      <!-- INPUT TOPICS -->
+      <remap from="/vision/obstacle_bool" to="/vision/obstacle_bool" />
+      <!-- OUTPUT TOPICS -->
+      <remap from="cmd_vel" to="cmd_vel" /> <!-- zero motors -->
+    </node>
+</launch>

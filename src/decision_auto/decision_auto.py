@@ -5,14 +5,14 @@ from std_msgs.msg import *
 from geometry_msgs.msg import Twist
 from visualization_msgs.msg import Marker
 
-## Declaramos dos silenciadores. Estos evitan que las acciones de evación de obstaculos, se crucen con las acciones de ARVIZ
+## Declaramos dos silenciadores. Estos evitan que las acciones de evacion de obstaculos, se crucen con las acciones de ARVIZ
 
 silenCheckCam = False
 silenCheckArViz = False
 
-## Función correspondiente al suscriptor (checkArViz)
-## Cuando encuentra un código con un ID diferente de 0:
-	## Publica mensaje "AR tag encontrado" y realiza la acción => ↑↓↑↓ + STOP
+## Funcion correspondiente al suscriptor (checkArViz)
+## Cuando encuentra un codigo con un ID diferente de 0:
+	## Publica mensaje "AR tag encontrado" y realiza la accion => + STOP
 
 def checkArViz (marker):
 	global silenCheckCam
@@ -55,7 +55,7 @@ def checkArViz (marker):
 		else:
 			pub.publish("No entro a nada :(")
 
-## Función correspondiente al suscriptor (checkCam)
+## Funcion correspondiente al suscriptor (checkCam)
 ## Cuando encuentra un obstaculo toma una decision:
 	## Trabaja con velocidades 0.2 para avance y giro
 

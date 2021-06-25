@@ -19,7 +19,8 @@ def checkArViz (marker):
 	global silenCheckArViz
 	twist = Twist()
 	if(not silenCheckArViz):
-		if(marker.id != 0): # > -1 ?
+		if(marker.id >= 0): # > -1 ?
+			pubmatrix.publish(0)
 			silenCheckCam = True
 			silenCheckArViz = True
 			pub.publish("AR tag encontrado")
@@ -52,6 +53,8 @@ def checkArViz (marker):
 			cmd_vel_pub.publish(twist)
 			silenCheckCam = False
 			silenCheckArViz = False
+			
+			pub.publish(1)
 		else:
 			pub.publish("No entro a nada :(")
 
@@ -128,11 +131,11 @@ def checkCam (cam):
 
 		silenCheckCam = False
 		silenCheckArViz = False
-
+pubmatrix = rospy.Publisher('/matrix',Int64,queue_size = 10)
 pub = rospy.Publisher('/vision/instrucciones',String,queue_size = 10)
 cmd_vel_pub = rospy.Publisher("teleop/cmd_vel", Twist, queue_size=1)
 def main():
-	rospy.init_node("lost_comms_recovery")
+	rospy.init_node("decision_auto")
 	sub = rospy.Subscriber('/vision/obstacle_bool',String, checkCam)
 	subrviz = rospy.Subscriber('/visualization_marker', Marker, checkArViz)
 	rate = rospy.Rate(2)

@@ -133,7 +133,7 @@ def checkCam (cam):
 		silenCheckArViz = False
 pubmatrix = rospy.Publisher('/matrix',Int64,queue_size = 10)
 pub = rospy.Publisher('/vision/instrucciones',String,queue_size = 10)
-cmd_vel_pub = rospy.Publisher("teleop/cmd_vel", Twist, queue_size=1)
+cmd_vel_pub = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
 def main():
 	rospy.init_node("decision_auto")
 	sub = rospy.Subscriber('/vision/obstacle_bool',String, checkCam)
